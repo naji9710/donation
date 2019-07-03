@@ -31,8 +31,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public String createUser(User user) {
 
-        //if( !userExists(user.getEmail()) ) return "This email address is already linked to an account !";
-        ///userRepository.save(user);
+        if( userExists(user.getEmail()) ) return "This email address is already linked to an account !";
+        userRepository.save(user);
         return "account created !";
     }
 }
