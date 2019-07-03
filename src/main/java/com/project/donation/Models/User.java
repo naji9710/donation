@@ -5,14 +5,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name="account")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idUser;
 
-    private String firstName, lastName, email, password;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
 
     public Long getIdUser() {
         return idUser;
