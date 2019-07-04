@@ -40,12 +40,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUsers() {
-
-        return userRepository.findAll();
-    }
-
-    @Override
     public List<User> getAllUsers() {
 
         return userRepository.findAll();
@@ -55,9 +49,6 @@ public class UserServiceImpl implements UserService {
     public boolean updateUser(Long idUser, User user) {
 
         User user1=userRepository.findById(idUser).get();
-
-        List<User> users;
-        users=userRepository.findAll();
 
 
         if (!user1.equals(Optional.empty())) {

@@ -22,7 +22,6 @@ public class UserCrudController {
 
     @PostMapping("/inscription")
     public boolean createUser(@RequestBody User user) {
-        System.out.println(user.getEmail());
         return userService.createUser(user);
     }
 
