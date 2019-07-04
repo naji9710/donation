@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,17 +24,19 @@ public class UserServiceImpl implements UserService {
         if(users == null) return false;
 
         for(User user: users) {
+
             if(user.getEmail().equals(email)) return true;
         }
         return false;
     }
 
     @Override
-    public String createUser(User user) {
+    public boolean createUser(User user) {
 
-        if( userExists(user.getEmail()) ) return "This email address is already linked to an account !";
+        if( userExists(user.getEmail()) ) return false;
+        if(user.getFirstName() == null || user.getLastName() == null || user.getEmail() == null || user.getPassword() == null) return false;
         userRepository.save(user);
-        return "account created !";
+        return true;
     }
 
     @Override
@@ -41,4 +44,44 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findAll();
     }
+
+    @Override
+    public List<User> getAllUsers() {
+
+        return userRepository.findAll();
+    }
+
+    @Override
+    public boolean updateUser(Long idUser, User user) {
+
+        User user1=userRepository.findById(idUser).get();
+
+        List<User> users;
+        users=userRepository.findAll();
+
+
+        if (!user1.equals(Optional.empty())) {
+            if(user.getFirstName()!=null) user1.setFirstName(user.getFirstName());
+            if(user.getLastName()!=null) user1.setLastName(user.getLastName());
+            if(user.getEmail()!=null) {
+                if (userExists(user.getEmail())) return false;
+                user1.setEmail(user.getEmail());
+            }
+            if(user.getPassword()!=null) user1.setPassword(user.getPassword());
+            userRepository.save(user1);
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean deleteUser(Long idUser) {
+        if(!userRepository.findById(idUser).equals(Optional.empty())) {
+            userRepository.deleteById(idUser);
+            return true;
+        }
+        return false;
+    }
 }
+
