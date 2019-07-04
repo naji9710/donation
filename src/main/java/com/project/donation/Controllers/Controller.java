@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,14 +19,8 @@ public class Controller {
     private UserService userService;
 
     @GetMapping("/users")
-    public List<String> getAllUsers(){
-
-        List<String> l=new ArrayList<>();
-        l.add("jjj");
-        l.add("jjj");
-        l.add("jjj");
-        l.add("jjj");
-        return  l;
+    public List<User> getAllUsers(){
+        return  userService.getUsers();
     }
 
     @PostMapping("/inscription")

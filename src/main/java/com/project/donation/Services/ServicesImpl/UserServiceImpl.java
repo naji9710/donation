@@ -35,4 +35,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         return "account created !";
     }
+
+    @Override
+    public List<User> getUsers() {
+
+        return userRepository.findAll();
+    }
 }
