@@ -42,12 +42,12 @@ public class AssociationServiceImpl implements AssociationService {
         return false;
     }
 
-    //Problem !!!!!!!!!!!!!!!!!!!!!!!
+
     @Override
     public boolean deleteAssociation(Long idAssociation) {
 
 
-        if (!associationRepository.findById(idAssociation).get().equals(Optional.empty())) {
+        if (!associationRepository.findById(idAssociation).equals(Optional.empty())) {
             associationRepository.deleteById(idAssociation);
             return true;
         }
