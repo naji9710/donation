@@ -20,14 +20,14 @@ public class UserCrudController {
         return  userService.getAllUsers();
     }
 
-    @PostMapping("/inscription")
+    @PostMapping("/createUser")
     public boolean createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
 
-    @PutMapping("/updateAccount/{idUser}")
+    @PutMapping("/updateUser/{idUser}")
     public boolean updateUser(@PathVariable("idUser") Long idUser, @RequestBody User user) {return userService.updateUser(idUser,user);}
 
-    @DeleteMapping("/deleteAccount/{idUser}")
+    @DeleteMapping("/deleteUser/{idUser}")
     public boolean deleteUser(@PathVariable("idUser") Long idUser) {return userService.deleteUser(idUser);}
 }

@@ -3,9 +3,7 @@ package com.project.donation.Controllers;
 import com.project.donation.Models.Project;
 import com.project.donation.Services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,18 +18,18 @@ public class ProjectCrudController {
       return null;
     }
 
-    @PostMapping("/newProject")
-    public Boolean createProject(){
+    @PostMapping("/createProject")
+    public Boolean createProject(@RequestBody Project project){
         return null;
     }
 
-    @GetMapping("/updateProject")
-    public Boolean updateProject(){
+    @PutMapping("/updateProject/{idProject}")
+    public Boolean updateProject(@PathVariable("idProject") Long idProject, @RequestBody Project project){
         return null;
     }
 
-    @GetMapping("/deleteProect/{id}")
-    public Boolean deleteProject(){
+    @DeleteMapping("/deleteProject/{idProject}")
+    public Boolean deleteProject(@PathVariable("idProject") Long idProject){
         return null;
     }
 }

@@ -20,12 +20,12 @@ public class SponsorCrudController {
         return  sponsorService.getAllSponsors();
     }
 
-    @PostMapping("/newSponsor")
+    @PostMapping("/createSponsor")
     public boolean createSponsor(@RequestBody Sponsor sponsor) {
         return sponsorService.createSponsor(sponsor);
     }
 
-    @PutMapping("/updateAccount/{idSponsor}")
+    @PutMapping("/updateSponsor/{idSponsor}")
     public boolean updateSponsor(@PathVariable("idSponsor") Long idSponsor, @RequestBody Sponsor sponsor) {
         return sponsorService.updateSponsor(idSponsor,sponsor);}
 
