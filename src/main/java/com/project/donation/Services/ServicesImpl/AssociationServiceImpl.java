@@ -24,8 +24,12 @@ public class AssociationServiceImpl implements AssociationService {
     @Override
     public boolean createAssociation(Association association) {
 
-        associationRepository.save(association);
-        return true;
+        if(association.getAssociationName()!=null) {
+            associationRepository.save(association);
+            return true;
+        }
+        return false;
+
     }
 
     @Override
